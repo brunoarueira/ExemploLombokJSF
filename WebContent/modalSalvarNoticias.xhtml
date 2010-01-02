@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<a4j:outputPanel ajaxRendered="true">
+		<h:form style="display:none" prependId="false">
+			<h:inputHidden id="hasMessagesSalvarNoticia"
+				value="#{noticiaController.hasMessages}" />
+		</h:form>
+	</a4j:outputPanel>
+
+	<rich:modalPanel id="modalSalvarNoticia" resizeable="false"
+		moveable="false" autosized="true" height="160">
+
+		<f:facet name="header">
+			<h:outputText value="#{noticiaController.titulo}" />
+		</f:facet>
+
+		<a4j:form id="salvarNoticiaForm" ajaxSingle="false"
+			ajaxSubmit="false">
+			<br />
+			<br />
+
+			<h:panelGrid id="pgNoticia" columns="2"
+				columnClasses="coluna1,coluna2">
+
+				<h:outputLabel value="Documento:" for="descricao" />
+				<h:column>
+					<h:inputText id="itDescricao"
+						value="#{documentoHelper.documento.descricao}" styleClass="edit"
+						size="50" required="true" requiredMessage="Campo Obrigatorio"
+						immediate="false" converter="UpperCaseStringConverter" />
+					<rich:message for="itDescricao" id="descricaoErrorRM">
+						<f:facet name="errorMarker">
+							<h:graphicImage url="images/error.gif" />
+						</f:facet>
+					</rich:message>
+				</h:column>
+			</h:panelGrid>
+			<br />
+
+			<rich:message styleClass="messagePersonalizada" showSummary="false"
+				id="formulario" for="salvarNoticiaForm">
+				<f:facet name="errorMarker">
+					<h:graphicImage url="images/error.gif" />
+				</f:facet>
+			</rich:message>
+
+			<br />
+			<br />
+
+			<a4j:commandButton id="cbModalSalvarNoticia"
+				image="images/botao_salvar.gif" action="#{noticiaController.salvar}"
+				reRender="listaNoticias" type="submit"
+				oncomplete="if (document.getElementById('conteudo:hasMessagesSalvarNoticia').value=='false') Richfaces.hideModalPanel('modalSalvarNoticia');" />
+
+			<rich:spacer width="20" />
+
+			<a4j:commandButton id="cbModalCancelarNoticia"
+				image="images/botao_cancelar.gif" type="reset"
+				action="#{noticiaController.limpar}"
+				oncomplete="Richfaces.hideModalPanel('modalSalvarNoticia')" />
+
+		</a4j:form>
+	</rich:modalPanel>
+
+</ui:composition>
