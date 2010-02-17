@@ -29,13 +29,26 @@
 			<h:panelGrid id="pgNoticia" columns="2"
 				columnClasses="coluna1,coluna2">
 
-				<h:outputLabel value="Documento:" for="descricao" />
+				<h:outputLabel value="Título:" for="itTitulo" />
 				<h:column>
-					<h:inputText id="itDescricao"
-						value="#{documentoHelper.documento.descricao}" styleClass="edit"
+					<h:inputText id="itTitulo"
+						value="#{noticiaController.noticia.titulo}" styleClass="edit"
 						size="50" required="true" requiredMessage="Campo Obrigatorio"
-						immediate="false" converter="UpperCaseStringConverter" />
-					<rich:message for="itDescricao" id="descricaoErrorRM">
+						immediate="false" />
+					<rich:message for="itTitulo" id="tituloErrorRM">
+						<f:facet name="errorMarker">
+							<h:graphicImage url="images/error.gif" />
+						</f:facet>
+					</rich:message>
+				</h:column>
+
+				<h:outputLabel value="Conteúdo:" for="itaConteudo" />
+				<h:column>
+					<h:inputTextarea id="itaConteudo"
+						value="#{noticiaController.noticia.conteudo}" size="50"
+						required="true" requiredMessage="Campo obrigatório"
+						immediate="false" />
+					<rich:message for="itaConteudo" id="tituloErrorRM">
 						<f:facet name="errorMarker">
 							<h:graphicImage url="images/error.gif" />
 						</f:facet>

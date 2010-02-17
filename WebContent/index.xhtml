@@ -5,6 +5,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j">
+	
+	<ui:include src="/modalSalvarNoticias.xhtml" />
+	
 <title>Projeto Exemplo Lombok com JSF</title>
 <body>
 <center><b>Página Index do Exemplo utilizando Lombok com
@@ -18,14 +21,19 @@ JSF</b></center>
 		</f:facet>
 		<h:panelGrid id="pgNoticias" columns="2" style="font-size: 13px;">
 			<h:column>
-				<h:commandLink value="Criar" />
+				<h:commandLink value="Criar" onclick="Richfaces.showModalPanel('modalSalvarNoticia');"/>
+			</h:column>
+			<h:column>
+				<h:commandLink value="Editar" />
 			</h:column>
 			<h:column>
 				<h:commandLink value="Listar" />
 			</h:column>
 		</h:panelGrid>
 
-		<rich:dataTable id="listaNoticias" width="100%" rows="10" var="noticia">
+		<rich:dataTable id="listaNoticias"
+			value="#{noticiaController.listaNoticias}" width="100%" rows="10"
+			var="noticia">
 			<f:facet name="header">
 				<rich:columnGroup>
 					<rich:column>
@@ -41,13 +49,13 @@ JSF</b></center>
 			</f:facet>
 
 			<rich:column>
-				<h:outputText value="0" />
+				<h:outputText value="#{noticia.codigo}" />
 			</rich:column>
 			<rich:column>
-				<h:outputText value="Título teste" />
+				<h:outputText value="#{noticia.titulo}" />
 			</rich:column>
 			<rich:column>
-				<h:outputText value="Conteúdo teste" />
+				<h:outputText value="#{noticia.conteudo}" />
 			</rich:column>
 		</rich:dataTable>
 

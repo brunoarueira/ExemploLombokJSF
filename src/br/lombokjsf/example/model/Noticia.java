@@ -47,5 +47,4 @@ public class Noticia implements Serializable {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-
 }
