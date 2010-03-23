@@ -15,7 +15,7 @@
 	</a4j:outputPanel>
 
 	<rich:modalPanel id="modalSalvarNoticia" resizeable="false"
-		moveable="false" autosized="true" height="160">
+		moveable="false" autosized="true" height="160" showWhenRendered="false">
 
 		<f:facet name="header">
 			<h:outputText value="#{noticiaController.titulo}" />
@@ -67,17 +67,17 @@
 			<br />
 			<br />
 
-			<a4j:commandButton id="cbModalSalvarNoticia"
-				image="images/botao_salvar.gif" action="#{noticiaController.salvar}"
-				reRender="listaNoticias" type="submit"
-				oncomplete="if (document.getElementById('conteudo:hasMessagesSalvarNoticia').value=='false') Richfaces.hideModalPanel('modalSalvarNoticia');" />
+			<!-- <a4j:commandButton id="cbModalSalvarNoticia" value="Salvar"
+				action="#{noticiaController.salvar}" reRender="listaNoticias"
+				type="submit"
+				oncomplete="if (document.getElementById('conteudo:hasMessagesSalvarNoticia').value=='false') Richfaces.hideModalPanel('modalSalvarNoticia');" /> -->
 
 			<rich:spacer width="20" />
 
-			<a4j:commandButton id="cbModalCancelarNoticia"
-				image="images/botao_cancelar.gif" type="reset"
+			<!-- <a4j:commandButton id="cbModalCancelarNoticia"
+				value="Cancelar" type="reset"
 				action="#{noticiaController.limpar}"
-				oncomplete="Richfaces.hideModalPanel('modalSalvarNoticia')" />
+				oncomplete="Richfaces.hideModalPanel('modalSalvarNoticia')" /> -->
 
 		</a4j:form>
 	</rich:modalPanel>

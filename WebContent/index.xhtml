@@ -5,29 +5,33 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j">
-	
+
+<ui:define name="modalSalvarNoticias">
 	<ui:include src="/modalSalvarNoticias.xhtml" />
-	
+</ui:define>
+
 <title>Projeto Exemplo Lombok com JSF</title>
 <body>
 <center><b>Página Index do Exemplo utilizando Lombok com
 JSF</b></center>
 <br />
 <br />
-<a4j:form id="formGeralNoticias">
-	<rich:panel id="panelCrudNoticias">
+<a4j:form id="formGeralNoticias" ajaxSingle="true" ajaxSubmit="true">
+	<rich:panel id="panelCrudNoticias" rendered="true" ajaxSingle="true">
 		<f:facet name="header">
 			<font size="2">Notícias</font>
 		</f:facet>
-		<h:panelGrid id="pgNoticias" columns="2" style="font-size: 13px;">
+		<h:panelGrid id="pgNoticias" columns="3" style="font-size: 13px;" rendered="true">
 			<h:column>
-				<h:commandLink value="Criar" onclick="Richfaces.showModalPanel('modalSalvarNoticia');"/>
+				<a4j:commandLink id="linkCriar" value="Criar" ajaxSingle="true"
+					immediate="true"
+					onclick="Richfaces.showModalPanel('modalSalvarNoticia');" />
 			</h:column>
 			<h:column>
-				<h:commandLink value="Editar" />
+				<a4j:commandLink id="linkEditar" value="Editar" />
 			</h:column>
 			<h:column>
-				<h:commandLink value="Listar" />
+				<a4j:commandLink id="linkListar" value="Listar" reRender="listaNoticias" />
 			</h:column>
 		</h:panelGrid>
 
